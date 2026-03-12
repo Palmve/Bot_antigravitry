@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 class BotAntigravityFinal:
     def __init__(self, root):
         self.root = root
-        self.root.title("Monitor de Autogestión Pro")
+        self.root.title("Bot Antigravity - Control")
         self.root.attributes("-topmost", True)
         self.root.geometry("400x320")
         self.root.resizable(False, False)
@@ -20,7 +20,7 @@ class BotAntigravityFinal:
         self.ciclo = 1 
 
         # --- Interfaz ---
-        tk.Label(root, text="SISTEMA DE VIGILANCIA PROTEGIDA", font=("Arial", 11, "bold")).pack(pady=10)
+        tk.Label(root, text="BOT ANTIGRAVITY v1.5", font=("Arial", 11, "bold")).pack(pady=10)
         
         self.paso_label = tk.Label(root, text="Estado: Apagado", font=("Arial", 10, "bold"), fg="red")
         self.paso_label.pack(pady=5)
