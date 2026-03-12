@@ -1,40 +1,40 @@
-# 🤖 Monitor de Autogestión Pro (Bot Antigravity)
+# 🤖 Moniteur d'Auto-gestion Pro (Bot Antigravity)
 
-Este bot es un sistema de automatización basado en reconocimiento visual. Está diseñado para monitorear la pantalla y reaccionar ante la aparición de botones específicos o realizar desplazamientos automáticos si no detecta actividad.
+Ce bot est un système d'automatisation basé sur la reconnaissance visuelle. Il est conçu pour surveiller l'écran et réagir à l'apparition de boutons spécifiques ou effectuer des défilements automatiques s'il ne détecte aucune activité.
 
-## 🚀 Requisitos previos
+## 🚀 Prérequis
 
-Para que el bot funcione correctamente, necesitas tener instalado:
-- **Python 3.10 o superior** (Se recomienda marcar la opción "Add Python to PATH" durante la instalación).
+Pour que le bot fonctionne correctamente, vous devez avoir installé :
+- **Python 3.10 ou supérieur** (Il est recommandé de cocher l'option "Add Python to PATH" pendant l'installation).
 
-## 🛠️ Instalación rápida
+## 🛠️ Installation Rapide
 
-1.  **Descarga el proyecto** en una carpeta de tu preferencia.
-2.  **Ejecuta el lanzador**: Haz doble clic en el archivo `INICIAR_MOLTBOT.bat`.
-    -   La primera vez, el sistema creará automáticamente un entorno virtual (`.venv`) e instalará las librerías necesarias (`pyautogui`, `Pillow`, `opencv-python`).
-    -   En ejecuciones posteriores, el bot se iniciará directamente.
+1.  **Téléchargez le projet** dans un dossier de votre choix.
+2.  **Lancez le script** : Double-cliquez sur le fichier `INICIAR_MOLTBOT.bat`.
+    -   La première fois, le système créera automatiquement un environnement virtuel (`.venv`) et installera les bibliothèques nécessaires (`pyautogui`, `Pillow`, `opencv-python`).
+    -   Pour les exécutions suivantes, le bot démarrera directement.
 
-## 🕹️ Cómo usar el Bot
+## 🕹️ Comment utiliser le Bot
 
-1.  Abre la aplicación o página web que deseas monitorear.
-2.  Ejecuta `INICIAR_MOLTBOT.bat`.
-3.  Presiona el botón **"ENCENDER BOT"** en la interfaz.
-4.  **Acciones del Bot:**
-    -   **Paso 1 (Run):** Busca el botón azul (basado en `run_button.png`). Si lo encuentra, hace clic y espera 5 segundos.
-    -   **Paso 2 (Flecha):** Si no ve el botón "Run", busca una flecha hacia abajo (`down_arrow.png`). Si la encuentra, hace clic para desplazar la pantalla.
-    -   **Paso 3 (Auto-Scroll):** Si después de 2 ciclos no encuentra nada, el bot realizará un *scroll* hacia abajo automáticamente para intentar localizar los elementos.
+1.  Ouvrez l'application ou la page web que vous souhaitez surveiller.
+2.  Lancez `INICIAR_MOLTBOT.bat`.
+3.  Appuyez sur le bouton **"ENCENDER BOT"** (Démarrer) sur l'interface.
+4.  **Actions du Bot :**
+    -   **Étape 1 (Run) :** Recherche le bouton bleu (basé sur `run_button.png`). S'il le trouve, il clique et attend 5 secondes.
+    -   **Étape 2 (Flèche) :** S'il ne voit pas le bouton "Run", il cherche une flèche vers le bas (`down_arrow.png`). S'il la trouve, il clique pour faire défiler l'écran.
+    -   **Étape 3 (Auto-Scroll) :** Si après 2 cycles il ne trouve rien, le bot effectuera un défilement (*scroll*) vers le bas automatiquement pour tenter de localiser les éléments.
 
-## 📁 Archivos importantes
+## 📁 Fichiers Importants
 
--   `Boton_Run.py`: El código principal del bot (Lógica y GUI).
--   `INICIAR_MOLTBOT.bat`: El lanzador que prepara el entorno y arranca el bot.
--   `requirements.txt`: Lista de librerías necesarias.
--   `images/`: Contiene `run_button.png` y `down_arrow.png` (usados para el reconocimiento visual).
+-   `Boton_Run.py` : Le code principal du bot (Logique et GUI).
+-   `INICIAR_MOLTBOT.bat` : Le lanceur qui prépare l'environnement et démarre le bot.
+-   `requirements.txt` : Liste des bibliothèques nécessaires.
+-   `images/` : Contient `run_button.png` et `down_arrow.png` (utilisés pour la reconnaissance visuelle).
 
-## ⚠️ Notas importantes
+## ⚠️ Notes Importantes
 
--   **Resolución**: El bot depende de las imágenes proporcionadas. Si los botones en tu pantalla lucen muy diferentes a las capturas originales, es posible que debas actualizar las imágenes en la carpeta del proyecto.
--   **Seguridad**: Puedes detener el bot en cualquier momento presionando el botón **"DETENER BOT"** en la interfaz.
+-   **Résolution** : Le bot dépend des images fournies. Si les boutons sur votre écran sont très différents des captures originales, vous devrez peut-être mettre à jour les images dans le dossier du projet.
+-   **Sécurité** : Vous pouvez arrêter le bot à tout moment en appuyant sur le bouton **"DETENER BOT"** sur l'interface.
 
 ---
-*Desarrollado para optimización de flujos de trabajo.*
+*Développé pour l'optimisation des flux de travail.*
