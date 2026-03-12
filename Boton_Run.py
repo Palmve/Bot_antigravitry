@@ -110,6 +110,17 @@ class BotAntigravityFinal:
                     time.sleep(3)
                     continue
 
+                # --- PASO 2.5: BUSCAR ACCEPT ALL (Solo cada 2 ciclos) ---
+                if self.ciclo % 2 == 0:
+                    self.actualizar(f"Ciclo {self.ciclo} - Paso 2.5", "Buscando botón Accept all...", "#2980b9")
+                    pos_accept = self.buscar_seguro('Accept_all.png')
+                    if pos_accept:
+                        self.actualizar("¡ACCIÓN!", "Botón Accept all detectado. Pulsando...", "green")
+                        pyautogui.click(pos_accept)
+                        self.ciclo = 1
+                        time.sleep(3)
+                        continue
+
                 # --- PASO 3: LÓGICA DE SCROLL (Solo en Ciclo 2 o más) ---
                 if self.ciclo >= 2:
                     self.actualizar("Paso 3: Auto-Scroll", "Nada visto en 2 ciclos. Bajando pantalla solo...", "#e67e22")
