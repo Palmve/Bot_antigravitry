@@ -13,23 +13,33 @@ class BotAntigravityFinal:
         self.root = root
         self.root.title("Bot Antigravity - Control")
         self.root.attributes("-topmost", True)
+        self.root.attributes("-alpha", 0.92) # Translúcido sutil
         self.root.geometry("400x320")
         self.root.resizable(False, False)
+
+        # Borde de la ventana usando un Frame contenedor
+        self.main_frame = tk.Frame(root, bd=2, relief="solid", highlightbackground="gray", highlightthickness=1)
+        self.main_frame.pack(fill="both", expand=True, padx=5, pady=5)
 
         self.running = False
         self.ciclo = 1 
 
         # --- Interfaz ---
-        tk.Label(root, text="BOT ANTIGRAVITY v1.5", font=("Arial", 11, "bold")).pack(pady=10)
+        tk.Label(self.main_frame, text="BOT ANTIGRAVITY v1.5", font=("Arial", 11, "bold")).pack(pady=10)
         
-        self.paso_label = tk.Label(root, text="Estado: Apagado", font=("Arial", 10, "bold"), fg="red")
-        self.paso_label.pack(pady=5)
+        # Contenedor para etiquetas con altura fija para evitar que el botón se mueva
+        self.info_container = tk.Frame(self.main_frame, height=100)
+        self.info_container.pack(fill="x", pady=5)
+        self.info_container.pack_propagate(False)
 
-        self.detalle_label = tk.Label(root, text="Listo para iniciar el ciclo.", 
+        self.paso_label = tk.Label(self.info_container, text="Estado: Apagado", font=("Arial", 10, "bold"), fg="red")
+        self.paso_label.pack(pady=2)
+
+        self.detalle_label = tk.Label(self.info_container, text="Listo para iniciar el ciclo.", 
                                       font=("Arial", 9), wraplength=350, justify="center", fg="black")
-        self.detalle_label.pack(pady=15, padx=10)
+        self.detalle_label.pack(pady=5, padx=10)
 
-        self.btn_control = tk.Button(root, text="ENCENDER BOT", command=self.toggle_bot, 
+        self.btn_control = tk.Button(self.main_frame, text="ENCENDER BOT", command=self.toggle_bot, 
                                      bg="#4CAF50", fg="white", width=25, height=2, font=("Arial", 10, "bold"))
         self.btn_control.pack(pady=10)
 
