@@ -23,15 +23,28 @@ echo     OK: Carpeta encontrada.
 
 cd /d "%PROYECTO%"
 
-echo [2/4] Verificando Python en entorno virtual...
+echo [2/4] Verificando entorno virtual...
 if not exist ".venv\Scripts\python.exe" (
-    color 0C
-    echo [!] ERROR: No se encuentra '.venv\Scripts\python.exe'.
-    echo     Asegurate de haber instalado las dependencias.
-    pause
-    exit
+    echo     [!] Entorno no encontrado. Creando uno nuevo...
+    py -m venv .venv >nul 2>&1
+    if errorlevel 1 (
+        python -m venv .venv >nul 2>&1
+    )
+    
+    if not exist ".venv\Scripts\python.exe" (
+        color 0C
+        echo [!] ERROR: No se pudo crear el entorno virtual. 
+        echo     Asegurate de tener Python instalado y en el PATH.
+        pause
+        exit
+    )
+    
+    echo     [OK] Entorno creado. Instalando dependencias...
+    ".venv\Scripts\python.exe" -m pip install -r requirements.txt >nul
+    echo     [OK] Dependencias instaladas.
+) else (
+    echo     OK: Entorno encontrado.
 )
-echo     OK: Python encontrado.
 
 echo [3/4] Verificando script principal...
 if not exist "Boton_Run.py" (
