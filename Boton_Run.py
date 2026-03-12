@@ -11,13 +11,13 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 class BotAntigravityFinal:
     def __init__(self, root):
         self.root = root
-        self.root.title("Bot Antigravity - Contrôle")
+        self.root.title("Bot Antigravity - Control")
         self.root.attributes("-topmost", True)
-        self.root.attributes("-alpha", 0.90) # Translucidité à 90%
+        self.root.attributes("-alpha", 0.90) # 90% Translucency
         self.root.geometry("400x320")
         self.root.resizable(False, False)
 
-        # Bordure de la fenêtre
+        # Window Border
         self.main_frame = tk.Frame(root, bd=2, relief="solid", highlightbackground="gray", highlightthickness=1)
         self.main_frame.pack(fill="both", expand=True, padx=5, pady=5)
 
@@ -27,19 +27,19 @@ class BotAntigravityFinal:
         # --- Interface ---
         tk.Label(self.main_frame, text="BOT ANTIGRAVITY v1.5", font=("Arial", 11, "bold")).pack(pady=10)
         
-        # Conteneur pour étiquettes avec hauteur fixe pour la stabilité
+        # Container for labels with fixed height for stability
         self.info_container = tk.Frame(self.main_frame, height=100)
         self.info_container.pack(fill="x", pady=5)
         self.info_container.pack_propagate(False)
 
-        self.paso_label = tk.Label(self.info_container, text="État: Éteint", font=("Arial", 10, "bold"), fg="red")
+        self.paso_label = tk.Label(self.info_container, text="Status: Off", font=("Arial", 10, "bold"), fg="red")
         self.paso_label.pack(pady=2)
 
-        self.detalle_label = tk.Label(self.info_container, text="Prêt à démarrer le cycle.", 
+        self.detalle_label = tk.Label(self.info_container, text="Ready to start the cycle.", 
                                       font=("Arial", 9), wraplength=350, justify="center", fg="black")
         self.detalle_label.pack(pady=5, padx=10)
 
-        self.btn_control = tk.Button(self.main_frame, text="ALLUMER LE BOT", command=self.toggle_bot, 
+        self.btn_control = tk.Button(self.main_frame, text="TURN ON BOT", command=self.toggle_bot, 
                                      bg="#4CAF50", fg="white", width=25, height=2, font=("Arial", 10, "bold"))
         self.btn_control.pack(pady=10)
 
@@ -52,21 +52,21 @@ class BotAntigravityFinal:
         if not self.running:
             self.running = True
             self.ciclo = 1
-            self.btn_control.config(text="ARRÊTER LE BOT", bg="#f44336")
+            self.btn_control.config(text="STOP THE BOT", bg="#f44336")
             threading.Thread(target=self.hilo_logico, daemon=True).start()
         else:
-            self.detener_bot("État: Éteint", "Surveillance désactivée par l'utilisateur.", "red")
+            self.detener_bot("Status: Off", "Surveillance disabled by user.", "red")
 
     def detener_bot(self, paso, detalle, color):
         self.running = False
-        self.btn_control.config(text="REDÉMARRER LE BOT", bg="#4CAF50")
+        self.btn_control.config(text="RESTART THE BOT", bg="#4CAF50")
         self.actualizar(paso, detalle, color)
 
     def buscar_seguro(self, nombre):
-        """Recherche l'image sans planter si elle n'est pas trouvée."""
+        """Search for the image without crashing if not found."""
         ruta = os.path.join(BASE_DIR, nombre)
         if not os.path.isfile(ruta):
-            raise FileNotFoundError(f"Fichier manquant: {nombre}")
+            raise FileNotFoundError(f"Missing file: {nombre}")
         
         try:
             # Intentamos localizar la imagen
@@ -78,73 +78,73 @@ class BotAntigravityFinal:
     def hilo_logico(self):
         try:
             while self.running:
-                self.actualizar(f"CYCLE {self.ciclo}", "Démarrage d'une nouvelle recherche...", "black")
+                self.actualizar(f"CYCLE {self.ciclo}", "Starting a new search...", "black")
                 time.sleep(1)
 
-                # --- PASO 1: BUSCAR BOTÓN AZUL ---
-                self.actualizar(f"Cycle {self.ciclo} - Étape 1", "Recherche du bouton Bleu (Run)...", "blue")
+                # --- STEP 1: SEARCH FOR BLUE RUN BUTTON ---
+                self.actualizar(f"Cycle {self.ciclo} - Step 1", "Searching for Blue Button (Run)...", "blue")
                 pos_run = self.buscar_seguro('run_button.png')
 
                 if pos_run:
-                    self.actualizar("¡ACTION!", "Bouton Run trouvé ! Clic en cours...", "green")
+                    self.actualizar("ACTION!", "Run Button found! Clicking...", "green")
                     pyautogui.click(pos_run)
-                    self.ciclo = 1 # Reiniciamos ciclos al tener éxito
-                    self.actualizar("Succès", "Attente de 5s pour le traitement...", "#2e7d32")
+                    self.ciclo = 1 # Reset cycles on success
+                    self.actualizar("Success", "Waiting 5s for processing...", "#2e7d32")
                     time.sleep(5) 
                     continue
 
-                # Si no hay Run, pausa de 3 segundos
-                self.actualizar("Attente", "Run non trouvé. Attente de 3s pour Expand...", "orange")
+                # Pause if Run is not found
+                self.actualizar("Waiting", "Run not found. Waiting 3s for Expand...", "orange")
                 time.sleep(3)
 
-                # --- PASO 1.5: BUSCAR BOTÓN EXPAND ---
-                self.actualizar(f"Cycle {self.ciclo} - Étape 1.5", "Recherche du bouton Expand...", "#8e44ad")
+                # --- STEP 1.5: SEARCH FOR EXPAND BUTTON ---
+                self.actualizar(f"Cycle {self.ciclo} - Step 1.5", "Searching for Expand Button...", "#8e44ad")
                 pos_expand = self.buscar_seguro('Expand.png')
                 if pos_expand:
-                    self.actualizar("¡ACTION!", "Bouton Expand détecté. Clic en cours...", "green")
+                    self.actualizar("ACTION!", "Expand Button detected. Clicking...", "green")
                     pyautogui.click(pos_expand)
                     self.ciclo = 1
                     time.sleep(3)
                     continue
 
-                # --- PASO 2: BUSCAR FLECHA ---
-                self.actualizar(f"Cycle {self.ciclo} - Étape 2", "Recherche de la flèche (down_arrow)...", "purple")
+                # --- STEP 2: SEARCH FOR ARROW ---
+                self.actualizar(f"Cycle {self.ciclo} - Step 2", "Searching for Arrow (down_arrow)...", "purple")
                 pos_flecha = self.buscar_seguro('down_arrow.png')
 
                 if pos_flecha:
-                    self.actualizar("¡ACTION!", "Flèche détectée. Défilement de l'écran...", "green")
+                    self.actualizar("ACTION!", "Arrow detected. Scrolling down screen...", "green")
                     pyautogui.click(pos_flecha)
-                    self.ciclo = 1 # Reiniciamos ciclos
-                    self.actualizar("Succès", "Écran déplacé. Attente de 3s...", "#2e7d32")
+                    self.ciclo = 1 # Reset cycles
+                    self.actualizar("Success", "Screen moved. Waiting 3s...", "#2e7d32")
                     time.sleep(3)
                     continue
 
-                # --- PASO 2.5: BUSCAR ACCEPT ALL (Solo cada 2 ciclos) ---
+                # --- STEP 2.5: SEARCH FOR ACCEPT ALL (Every 2 cycles) ---
                 if self.ciclo % 2 == 0:
-                    self.actualizar(f"Cycle {self.ciclo} - Étape 2.5", "Recherche du bouton Accept all...", "#2980b9")
+                    self.actualizar(f"Cycle {self.ciclo} - Step 2.5", "Searching for Accept all Button...", "#2980b9")
                     pos_accept = self.buscar_seguro('Accept_all.png')
                     if pos_accept:
-                        self.actualizar("¡ACTION!", "Bouton Accept all détecté. Clic en cours...", "green")
+                        self.actualizar("ACTION!", "Accept all Button detected. Clicking...", "green")
                         pyautogui.click(pos_accept)
                         self.ciclo = 1
                         time.sleep(3)
                         continue
 
-                # --- PASO 3: LÓGICA DE SCROLL (Solo en Ciclo 2 o más) ---
+                # --- STEP 3: AUTO-SCROLL LOGIC (Cycle 2 or more) ---
                 if self.ciclo >= 2:
-                    self.actualizar("Étape 3: Auto-Scroll", "Rien vu en 2 cycles. Défilement forcé...", "#e67e22")
+                    self.actualizar("Step 3: Auto-Scroll", "Nothing seen in 2 cycles. Forced scroll...", "#e67e22")
                     pyautogui.scroll(-600)
                     time.sleep(3)
-                    self.ciclo = 1 # Reiniciamos tras el scroll para volver a empezar
+                    self.ciclo = 1 # Reset after scroll to start over
                 else:
                     self.ciclo += 1
-                    self.actualizar("Fin du Cycle 1", "Rien trouvé. Augmentation du niveau de recherche dans 3s...", "gray")
+                    self.actualizar("End of Cycle 1", "Nothing found. Increasing search level in 3s...", "gray")
                     time.sleep(3)
 
         except Exception as e:
-            # Si ocurre un error REAL (ej. falta un archivo), el bot se detiene
-            detalle = f"Erreur critique: {type(e).__name__}\n{str(e)}"
-            self.detener_bot("¡BOT ARRÊTÉ!", detalle, "red")
+            # Fatal error (e.g., missing file) stops the bot
+            detalle = f"Critical Error: {type(e).__name__}\n{str(e)}"
+            self.detener_bot("BOT STOPPED!", detalle, "red")
             print(traceback.format_exc())
 
 if __name__ == "__main__":

@@ -1,9 +1,9 @@
 @echo off
 cls
-title Lanceur Bot Antigravity
+title Bot Antigravity Launcher
 color 0A
 echo ============================================
-echo   DEMARRAGE DU SYSTEME D'AUTO-GESTION
+echo   STARTING AUTO-MANAGEMENT SYSTEM
 echo ============================================
 echo.
 
@@ -11,21 +11,21 @@ echo.
 set "PROYECTO=%~dp0"
 set "PROYECTO=%PROYECTO:~0,-1%"
 
-echo [1/4] Verification du dossier du projet...
+echo [1/4] Verifying project folder...
 if not exist "%PROYECTO%" (
     color 0C
-    echo [!] ERREUR: Le dossier du projet n'existe pas.
-    echo Chemin recherche: %PROYECTO%
+    echo [!] ERROR: Project folder does not exist.
+    echo Path searched: %PROYECTO%
     pause
     exit
 )
-echo     OK: Dossier trouve.
+echo     OK: Folder found.
 
 cd /d "%PROYECTO%"
 
-echo [2/4] Verification de l'environnement virtuel...
+echo [2/4] Verifying virtual environment...
 if not exist ".venv\Scripts\python.exe" (
-    echo     [!] Environnement non trouve. Creation en cours...
+    echo     [!] Environment not found. Creating a new one...
     py -m venv .venv >nul 2>&1
     if errorlevel 1 (
         python -m venv .venv >nul 2>&1
@@ -33,43 +33,43 @@ if not exist ".venv\Scripts\python.exe" (
     
     if not exist ".venv\Scripts\python.exe" (
         color 0C
-        echo [!] ERREUR: Impossible de creer l'environnement virtuel. 
-        echo     Assurez-vous que Python est installe et dans le PATH.
+        echo [!] ERROR: Could not create virtual environment. 
+        echo     Ensure Python is installed and added to PATH.
         pause
         exit
     )
     
-    echo     [OK] Environnement cree. Installation des dependances...
-    echo     (Veuillez patienter, cela peut prendre une minute)
+    echo     [OK] Environment created. Installing dependencies...
+    echo     (Please wait, this may take a minute)
     echo.
     ".venv\Scripts\python.exe" -m pip install -r requirements.txt
     echo.
-    echo     [OK] Dependances installees.
+    echo     [OK] Dependencies installed.
 ) else (
-    echo     OK: Environnement trouve.
+    echo     OK: Environment found.
 )
 
-echo [3/4] Verification du script principal...
+echo [3/4] Verifying main script...
 if not exist "Boton_Run.py" (
     color 0C
-    echo [!] ERREUR: Le fichier 'Boton_Run.py' est manquant.
+    echo [!] ERROR: File 'Boton_Run.py' is missing.
     pause
     exit
 )
-echo     OK: Script trouve.
+echo     OK: Script found.
 
-echo [4/4] EXECUTION DU BOT...
+echo [4/4] EXECUTING BOT...
 echo --------------------------------------------
 ".venv\Scripts\python.exe" "Boton_Run.py"
 echo --------------------------------------------
 
 echo.
-echo [INFO] Le programme est termine.
+echo [INFO] Program has finished.
 if %errorlevel% neq 0 (
     color 0C
-    echo [!] Une ERREUR est survenue avec le code: %errorlevel%
+    echo [!] An ERROR occurred with code: %errorlevel%
 ) else (
-    echo [OK] Termine avec succes.
+    echo [OK] Finished successfully.
 )
 
 pause

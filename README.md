@@ -1,42 +1,45 @@
-# 🤖 Moniteur d'Auto-gestion Pro (Bot Antigravity)
+# 🤖 Auto-Management Monitor Pro (Bot Antigravity)
 
-Ce bot est un système d'automatisation basé sur la reconnaissance visuelle. Il est conçu pour surveiller l'écran et réagir à l'apparition de boutons spécifiques ou effectuer des défilements automatiques s'il ne détecte aucune activité.
+This bot is a visual recognition-based automation system. It is designed to monitor the screen and react to specific buttons or perform automatic scrolls if no activity is detected.
 
-## 🚀 Prérequis
+## 🚀 Prerequisites
 
-Pour que le bot fonctionne correctamente, vous devez avoir installé :
-- **Python 3.10 ou supérieur** (Il est recommandé de cocher l'option "Add Python to PATH" pendant l'installation).
+For the bot to function correctly, you need to have:
+- **Python 3.10 or higher** installed (It is recommended to check the "Add Python to PATH" option during installation).
 
-## 🛠️ Installation Rapide
+## 🛠️ Quick Installation
 
-1.  **Téléchargez le projet** dans un dossier de votre choix.
-2.  **Lancez le script** : Double-cliquez sur le fichier `INICIAR_MOLTBOT.bat`.
-    -   La première fois, le système créera automatiquement un environnement virtuel (`.venv`) et installera les bibliothèques nécessaires (`pyautogui`, `Pillow`, `opencv-python`).
-    -   Pour les exécutions suivantes, le bot démarrera directement.
+1.  **Download the project** to a folder of your choice.
+2.  **Run the launcher**: Double-click on the `INICIAR_MOLTBOT.bat` file.
+    -   The first time, the system will automatically create a virtual environment (`.venv`) and install the necessary libraries (`pyautogui`, `Pillow`, `opencv-python`).
+    -   For subsequent runs, the bot will start directly.
 
-## 🕹️ Comment utiliser le Bot
+## 🕹️ How to use the Bot
 
-1.  Ouvrez l'application ou la page web que vous souhaitez surveiller.
-2.  Lancez `INICIAR_MOLTBOT.bat`.
-3.  Appuyez sur le bouton **"ENCENDER BOT"** (Démarrer) sur l'interface.
-4.  **Actions du Bot :**
-    -   **Étape 1 (Run) :** Recherche le bouton bleu (basé sur `run_button.png`). S'il le trouve, il clique et attend 5 secondes.
-    -   **Étape 1.5 (Expand) :** Recherche le bouton "Expand" (basé sur `Expand.png`). S'il le trouve, il clique pour agrandir la vue.
-    -   **Étape 2 (Flèche) :** S'il ne voit pas le bouton "Run" ou "Expand", il cherche une flèche vers le bas (`down_arrow.png`). S'il la trouve, il clique pour faire défiler l'écran.
-    -   **Étape 3 (Auto-Scroll) :** Si après 2 cycles il ne trouve rien, le bot effectuera un défilement (*scroll*) vers le bas automatiquement pour tenter de localiser les éléments.
+1.  Open the application or web page you want to monitor.
+2.  Launch `INICIAR_MOLTBOT.bat`.
+3.  Press the **"TURN ON BOT"** button on the interface.
+4.  **Bot Actions:**
+    -   **Step 1 (Run):** Searches for the blue button (based on `run_button.png`). If found, it clicks and waits 5 seconds.
+    -   **Step 1.5 (Expand):** Searches for the "Expand" button (based on `Expand.png`). If found, it clicks to enlarge the view.
+    -   **Step 2 (Arrow):** If it doesn't see the "Run" or "Expand" buttons, it searches for a down arrow (`down_arrow.png`). If found, it clicks to scroll the screen.
+    -   **Step 2.5 (Accept all):** Every 2 cycles, the bot checks if the "Accept all" button (`Accept_all.png`) is present and clicks it if necessary.
+    -   **Step 3 (Auto-Scroll):** If after 2 cycles it finds nothing, the bot will perform an automatic scroll down to try and locate elements.
 
-## 📁 Fichiers Importants
+## 📁 Important Files
 
--   `Boton_Run.py` : Le code principal du bot (Logique et GUI).
--   `INICIAR_MOLTBOT.bat` : Le lanceur qui prépare l'environnement et démarre le bot.
--   `requirements.txt` : Liste des bibliothèques nécessaires.
--   `Expand.png` : Image pour le bouton d'extension de vue.
--   `run_button.png` et `down_arrow.png` : Utilisés pour la reconnaissance visuelle.
+-   `Boton_Run.py`: Main bot code (Logic and GUI).
+-   `INICIAR_MOLTBOT.bat`: Launcher that prepares the environment and starts the bot.
+-   `requirements.txt`: List of necessary libraries.
+-   `Expand.png`: Image for the view extension button.
+-   `Accept_all.png`: Image to confirm acceptance messages.
+-   `run_button.png` and `down_arrow.png`: Used for visual recognition.
 
-## ⚠️ Notes Importantes
+## ⚠️ Important Notes
 
--   **Résolution** : Le bot dépend des images fournies. Si les boutons sur votre écran sont très différents des captures originales, vous devrez peut-être mettre à jour les images dans le dossier du projet.
--   **Sécurité** : Vous pouvez arrêter le bot à tout moment en appuyant sur le bouton **"DETENER BOT"** sur l'interface.
+-   **Resolution**: The bot relies on the provided images. If the buttons on your screen look very different from the original captures, you may need to update the images in the project folder.
+-   **Security**: You can stop the bot at any time by pressing the **"STOP THE BOT"** button on the interface.
+-   **WARNING**: Always remember to turn off the bot when you are no longer using it. Since it performs automated scrolls and clicks, it could interfere with other open windows if left active in the background.
 
 ---
-*Développé pour l'optimisation des flux de travail.*
+*Developed for workflow optimization.*
