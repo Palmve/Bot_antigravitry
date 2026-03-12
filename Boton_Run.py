@@ -85,8 +85,18 @@ class BotAntigravityFinal:
                     continue
 
                 # Si no hay Run, pausa de 3 segundos
-                self.actualizar("Espera", "Run no visto. Pausando 3s para buscar flecha...", "orange")
+                self.actualizar("Espera", "Run no visto. Pausando 3s para buscar Expand...", "orange")
                 time.sleep(3)
+
+                # --- PASO 1.5: BUSCAR BOTÓN EXPAND ---
+                self.actualizar(f"Ciclo {self.ciclo} - Paso 1.5", "Buscando botón Expand...", "#8e44ad")
+                pos_expand = self.buscar_seguro('Expand.png')
+                if pos_expand:
+                    self.actualizar("¡ACCIÓN!", "Botón Expand detectado. Pulsando...", "green")
+                    pyautogui.click(pos_expand)
+                    self.ciclo = 1
+                    time.sleep(3)
+                    continue
 
                 # --- PASO 2: BUSCAR FLECHA ---
                 self.actualizar(f"Ciclo {self.ciclo} - Paso 2", "Buscando Flecha (down_arrow)...", "purple")
